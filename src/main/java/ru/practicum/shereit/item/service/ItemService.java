@@ -1,18 +1,20 @@
 package ru.practicum.shereit.item.service;
 
-import ru.practicum.shereit.item.model.Item;
+import ru.practicum.shereit.item.dto.ItemCreateDto;
+import ru.practicum.shereit.item.dto.ItemDto;
+import ru.practicum.shereit.item.dto.ItemUpdateDto;
 
 import java.util.List;
 
 public interface ItemService {
 
-    Item createNewItem(Item item, Long userId);
+    ItemCreateDto createNewItem(ItemCreateDto item, Long userId);
 
-    Item getItemById(Long id);
+    ItemDto getItemById(Long id);
 
-    List<Item> getItemsByUserId(Long userId);
+    List<ItemDto> getItemsByUserId(Long userId);
 
-    List<Item> getAvailableItemsByQuery(String query);
+    List<ItemDto> getAvailableItemsByQuery(String query);
 
-    Item updateItem(Item item, Long userId);
+    ItemUpdateDto updateItem(ItemUpdateDto itemUpdateDto, Long userId);
 }

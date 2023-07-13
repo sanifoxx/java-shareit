@@ -1,18 +1,23 @@
 package ru.practicum.shereit.item.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 import ru.practicum.shereit.item.model.Item;
 
 import java.util.List;
 
-public interface ItemRepository {
+@Repository
+public interface ItemRepository extends JpaRepository<Item, Long> {
 
-    Item createNewItem(Item item);
+    List<Item> getItemsByOwnerId(Long userId);
 
-    Item getItemById(Long itemId);
-
-    List<Item> getItemsByUserId(Long userId);
-
-    List<Item> getAvailableItemsByQuery(String query);
-
-    Item updateItem(Item item);
+    @Query("\n" +
+            "SELECT *\n" +
+            "  FROM Items i\n" +
+            " WHERE i.available\n" +
+            "       AND (LOWER(i.name) LIKE LOWER('%:query%')\n" +
+            "       OR LOWER(i.description) LIKE LOWER('%:query%'))")
+    List<Item> getAvailableItemsByQuery(@Param("query") String query);
 }
