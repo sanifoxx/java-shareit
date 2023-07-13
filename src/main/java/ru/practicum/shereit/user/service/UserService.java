@@ -1,18 +1,20 @@
 package ru.practicum.shereit.user.service;
 
-import ru.practicum.shereit.user.model.User;
+import ru.practicum.shereit.user.dto.UserCreateDto;
+import ru.practicum.shereit.user.dto.UserDto;
+import ru.practicum.shereit.user.dto.UserUpdateDto;
 
 import java.util.List;
 
 public interface UserService {
 
-    User createNewUser(User user);
+    UserCreateDto createNewUser(UserCreateDto userCreateDto);
 
-    List<User> getAllUsers();
+    List<UserDto> getAllUsers();
 
-    User getUserById(Long id);
+    UserDto getUserById(Long id);
 
-    User updateUser(User user);
+    UserUpdateDto updateUser(UserUpdateDto userUpdateDto);
 
-    User deleteUserById(Long id);
+    UserDto deleteUserById(Long id);
 }

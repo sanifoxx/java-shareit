@@ -22,7 +22,7 @@ public class Item {
 
     private String description;
 
-    private Boolean isAvailable;
+    private Boolean available;
 
     @Override
     public boolean equals(Object o) {

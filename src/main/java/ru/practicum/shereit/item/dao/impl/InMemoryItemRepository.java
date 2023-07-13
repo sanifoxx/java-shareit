@@ -47,7 +47,7 @@ public class InMemoryItemRepository implements ItemRepository {
     public List<Item> getAvailableItemsByQuery(String query) {
         return items.values()
                 .stream()
-                .filter(x -> !query.isBlank() && x.getIsAvailable()
+                .filter(x -> !query.isBlank() && x.getAvailable()
                         && (x.getName().toLowerCase().contains(query)
                         || x.getDescription().toLowerCase().contains(query))
                 )
@@ -67,10 +67,10 @@ public class InMemoryItemRepository implements ItemRepository {
                         ? memoryItem.getDescription()
                         : item.getDescription()
         );
-        memoryItem.setIsAvailable(
-                item.getIsAvailable() == null
-                        ? memoryItem.getIsAvailable()
-                        : item.getIsAvailable()
+        memoryItem.setAvailable(
+                item.getAvailable() == null
+                        ? memoryItem.getAvailable()
+                        : item.getAvailable()
         );
         return getItemById(item.getId());
     }

@@ -1,18 +1,9 @@
 package ru.practicum.shereit.user.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import ru.practicum.shereit.user.model.User;
 
-import java.util.List;
-
-public interface UserRepository {
-
-    User createNewUser(User user);
-
-    List<User> getAllUsers();
-
-    User getUserById(Long id);
-
-    User updateUser(User user);
-
-    User deleteUserById(Long id);
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
 }
