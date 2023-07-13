@@ -1,11 +1,10 @@
 package ru.practicum.shereit.user.service.impl;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.practicum.shereit.user.model.User;
-import ru.practicum.shereit.user.repository.UserRepository;
+import ru.practicum.shereit.user.dao.UserRepository;
 import ru.practicum.shereit.user.service.UserService;
 
 import java.util.List;

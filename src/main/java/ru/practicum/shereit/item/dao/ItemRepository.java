@@ -1,4 +1,4 @@
-package ru.practicum.shereit.item.repository;
+package ru.practicum.shereit.item.dao;
 
 import ru.practicum.shereit.item.model.Item;
 

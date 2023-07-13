@@ -1,4 +1,4 @@
-package ru.practicum.shereit.user.repository;
+package ru.practicum.shereit.user.dao;
 
 import ru.practicum.shereit.user.model.User;
 

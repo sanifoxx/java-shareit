@@ -1,10 +1,10 @@
-package ru.practicum.shereit.item.repository.impl;
+package ru.practicum.shereit.item.dao.impl;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import ru.practicum.shereit.error_handler.model.exception.not_found.ItemNotFoundException;
 import ru.practicum.shereit.item.model.Item;
-import ru.practicum.shereit.item.repository.ItemRepository;
+import ru.practicum.shereit.item.dao.ItemRepository;
 
 import java.util.HashMap;
 import java.util.List;

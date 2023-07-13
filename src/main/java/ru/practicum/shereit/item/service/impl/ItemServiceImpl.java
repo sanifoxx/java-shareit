@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.practicum.shereit.error_handler.model.exception.access_is_denied.AccessIsDeniedException;
 import ru.practicum.shereit.item.model.Item;
-import ru.practicum.shereit.item.repository.ItemRepository;
+import ru.practicum.shereit.item.dao.ItemRepository;
 import ru.practicum.shereit.item.service.ItemService;
 import ru.practicum.shereit.user.model.User;
 import ru.practicum.shereit.user.service.UserService;

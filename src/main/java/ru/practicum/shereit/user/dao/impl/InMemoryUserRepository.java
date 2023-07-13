@@ -1,10 +1,10 @@
-package ru.practicum.shereit.user.repository.impl;
+package ru.practicum.shereit.user.dao.impl;
 
 import org.springframework.stereotype.Component;
 import ru.practicum.shereit.error_handler.model.exception.already_exists.UserAlreadyExistsException;
 import ru.practicum.shereit.error_handler.model.exception.not_found.UserNotFoundException;
 import ru.practicum.shereit.user.model.User;
-import ru.practicum.shereit.user.repository.UserRepository;
+import ru.practicum.shereit.user.dao.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
