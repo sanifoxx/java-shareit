@@ -3,6 +3,7 @@ package ru.practicum.shereit.error_handler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingRequestHeaderException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -26,6 +27,15 @@ public class ErrorHandler {
         );
         return new ErrorResponse(
                 Objects.requireNonNull(e.getFieldError()).getDefaultMessage()
+        );
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleMissingRequestHeaderException(final MissingRequestHeaderException e) {
+        log.debug("ERROR: MissingRequestHeaderException | {}", e.getMessage());
+        return new ErrorResponse(
+                e.getMessage()
         );
     }
 

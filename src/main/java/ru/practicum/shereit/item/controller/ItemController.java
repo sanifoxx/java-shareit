@@ -3,6 +3,7 @@ package ru.practicum.shereit.item.controller;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.shereit.item.dto.ItemDto;
 import ru.practicum.shereit.item.mapper.ItemMapper;
@@ -25,6 +26,7 @@ public class ItemController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public ItemDto createItem(@RequestBody @Valid ItemDto itemDto,
                               @RequestHeader("X-Sharer-User-Id") Long userId) {
         log.info("POST /items | userId={}, ItemDto-object: {}", userId, itemDto);
