@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.practicum.shereit.error_handler.model.exception.already_exists.UserAlreadyExistsException;
 import ru.practicum.shereit.error_handler.model.exception.not_found.UserNotFoundException;
 import ru.practicum.shereit.user.dto.UserCreateDto;
 import ru.practicum.shereit.user.dto.UserDto;
@@ -27,9 +28,14 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     @Override
     public UserCreateDto createNewUser(UserCreateDto userCreateDto) {
+        if (userRepository.existsUserByEmail(userCreateDto.getEmail())) {
+            throw new UserAlreadyExistsException(
+                    String.format("User with email '%s' already exists", userCreateDto.getEmail())
+            );
+        }
         User user = UserMapper.toUser(userCreateDto);
         return UserMapper.toCreateDto(userRepository.save(user));
     }
@@ -58,6 +64,11 @@ public class UserServiceImpl implements UserService {
         User oldUser = userRepository.findById(userUpdateDto.getId()).orElseThrow(() -> new UserNotFoundException(
                 String.format("User with id '%d' not found", userUpdateDto.getId())
         ));
+        if (userRepository.existsUserByEmailAndIdNot(userUpdateDto.getEmail(), userUpdateDto.getId())) {
+            throw new UserAlreadyExistsException(
+                    String.format("User with email '%s' already exists", userUpdateDto.getEmail())
+            );
+        }
         if (userUpdateDto.getName() != null) {
             oldUser.setName(userUpdateDto.getName());
         }

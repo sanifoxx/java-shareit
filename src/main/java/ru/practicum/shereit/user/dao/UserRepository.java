@@ -6,4 +6,9 @@ import ru.practicum.shereit.user.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+
+    boolean existsUserByEmail(String email);
+
+    boolean existsUserByEmailAndIdNot(String email, Long id);
+
 }

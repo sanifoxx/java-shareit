@@ -12,11 +12,9 @@ public class ItemDto {
 
     private Long id;
 
-    @NotNull(message = "The 'name' field must be present")
     @NotBlank(message = "The 'name' field cannot be empty")
     private String name;
 
-    @NotNull(message = "The 'description' field must be present")
     @NotBlank(message = "The 'description' field cannot be empty")
     private String description;
 

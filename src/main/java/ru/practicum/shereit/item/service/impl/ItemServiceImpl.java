@@ -1,6 +1,7 @@
 package ru.practicum.shereit.item.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Qualifier("ItemServiceImpl")
 public class ItemServiceImpl implements ItemService {
 
     private final ItemRepository itemRepository;
@@ -67,7 +69,8 @@ public class ItemServiceImpl implements ItemService {
     @Transactional(readOnly = true)
     @Override
     public List<ItemDto> getAvailableItemsByQuery(String query) {
-        return itemRepository.getAvailableItemsByQuery(query)
+        query = "%" + query + "%";
+        return itemRepository.getAvailableItemsByQuery(query.toUpperCase())
                 .stream()
                 .map(ItemMapper::toDto)
                 .collect(Collectors.toList());

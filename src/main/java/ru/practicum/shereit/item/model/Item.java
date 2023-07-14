@@ -4,14 +4,17 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.practicum.shereit.user.model.User;
 
 @Data
-@AllArgsConstructor
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "items")
 public class Item {
@@ -24,15 +27,13 @@ public class Item {
     @JoinColumn(name = "owner_id")
     private User owner;
 
-    @NotNull
     @NotBlank(message = "The 'name' field cannot be empty")
-    @Max(value = 255)
+    @Size(max = 255)
     @Column(name = "name")
     private String name;
 
-    @NotNull
     @NotBlank
-    @Max(value = 512)
+    @Size(max = 512)
     @Column(name = "description")
     private String description;
 

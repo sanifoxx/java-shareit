@@ -1,9 +1,6 @@
 package ru.practicum.shereit.user.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.Builder;
 import lombok.Data;
 
@@ -16,12 +13,12 @@ public class UserCreateDto {
 
     @NotNull
     @NotBlank(message = "The 'name' field cannot be empty")
-    @Max(value = 255)
+    @Size(max = 255)
     private String name;
 
     @NotNull
     @NotBlank(message = "The 'email' field cannot be empty")
-    @Max(value = 512)
+    @Size(max = 512)
     @Email(message = "The 'email'='${validatedValue}' field must match the E-mail format")
     private String email;
 }

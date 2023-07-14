@@ -14,10 +14,10 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> getItemsByOwnerId(Long userId);
 
     @Query("\n" +
-            "SELECT *\n" +
-            "  FROM Items i\n" +
-            " WHERE i.available\n" +
-            "       AND (LOWER(i.name) LIKE LOWER('%:query%')\n" +
-            "       OR LOWER(i.description) LIKE LOWER('%:query%'))")
+            "SELECT i\n" +
+            "  FROM Item i\n" +
+            " WHERE i.available = true\n" +
+            "       AND (LOWER(i.name) LIKE LOWER(CONCAT('%', :query, '%'))\n" +
+            "       OR LOWER(i.description) LIKE LOWER(CONCAT('%', :query, '%')))")
     List<Item> getAvailableItemsByQuery(@Param("query") String query);
 }

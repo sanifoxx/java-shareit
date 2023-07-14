@@ -3,6 +3,7 @@ package ru.practicum.shereit.item.dto;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,14 +13,12 @@ public class ItemCreateDto {
 
     private Long id;
 
-    @NotNull(message = "The 'name' field must be present")
     @NotBlank(message = "The 'name' field cannot be empty")
-    @Max(value = 255)
+    @Size(max = 255)
     private String name;
 
-    @NotNull(message = "The 'description' field must be present")
     @NotBlank(message = "The 'description' field cannot be empty")
-    @Max(value = 512)
+    @Size(max = 512)
     private String description;
 
     @NotNull(message = "The 'available' field must be present")
