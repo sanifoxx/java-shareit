@@ -18,6 +18,7 @@ import ru.practicum.shereit.item.service.ItemService;
 import ru.practicum.shereit.user.dao.UserRepository;
 import ru.practicum.shereit.user.model.User;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -69,8 +70,10 @@ public class ItemServiceImpl implements ItemService {
     @Transactional(readOnly = true)
     @Override
     public List<ItemDto> getAvailableItemsByQuery(String query) {
-        query = "%" + query + "%";
-        return itemRepository.getAvailableItemsByQuery(query.toUpperCase())
+        if (query.isBlank()) {
+            return Collections.emptyList();
+        }
+        return itemRepository.getAvailableItemsByQuery(query)
                 .stream()
                 .map(ItemMapper::toDto)
                 .collect(Collectors.toList());
