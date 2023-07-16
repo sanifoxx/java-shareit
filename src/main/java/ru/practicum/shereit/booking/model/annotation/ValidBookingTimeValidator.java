@@ -1,7 +1,7 @@
 package ru.practicum.shereit.booking.model.annotation;
 
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 import ru.practicum.shereit.booking.dto.BookingCreateDto;
 
 import java.time.LocalDateTime;

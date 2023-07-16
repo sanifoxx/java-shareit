@@ -1,6 +1,6 @@
 package ru.practicum.shereit.item.dto;
 
-import jakarta.validation.constraints.Size;
+import javax.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Data;
 

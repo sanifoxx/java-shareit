@@ -1,6 +1,6 @@
 package ru.practicum.shereit.booking.dto;
 
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 import ru.practicum.shereit.booking.model.annotation.ValidBookingTime;

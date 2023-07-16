@@ -1,6 +1,6 @@
 package ru.practicum.shereit.user.dto;
 
-import jakarta.validation.constraints.*;
+import javax.validation.constraints.*;
 import lombok.Builder;
 import lombok.Data;
 
