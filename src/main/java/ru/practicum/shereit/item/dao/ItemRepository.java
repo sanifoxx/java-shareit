@@ -9,7 +9,7 @@ import ru.practicum.shereit.item.model.Item;
 import java.util.List;
 
 @Repository
-public interface ItemRepository extends JpaRepository<Item, Long> {
+public interface ItemRepository extends JpaRepository<Item, Long>, ItemRepositoryCustom {
 
     List<Item> getItemsByOwnerId(Long userId);
 

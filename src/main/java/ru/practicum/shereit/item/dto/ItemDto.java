@@ -3,6 +3,7 @@ package ru.practicum.shereit.item.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
@@ -20,4 +21,15 @@ public class ItemDto {
 
     @NotNull(message = "The 'available' field must be present")
     private Boolean available;
+
+    private ItemBooking lastBooking;
+
+    private ItemBooking nextBooking;
+
+    @Data
+    @AllArgsConstructor
+    public static class ItemBooking {
+        private Long id;
+        private Long bookerId;
+    }
 }

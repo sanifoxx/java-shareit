@@ -10,7 +10,7 @@ public interface ItemService {
 
     ItemCreateDto createNewItem(ItemCreateDto item, Long userId);
 
-    ItemDto getItemById(Long id);
+    ItemDto getItemById(Long id, Long userId);
 
     List<ItemDto> getItemsByUserId(Long userId);
 

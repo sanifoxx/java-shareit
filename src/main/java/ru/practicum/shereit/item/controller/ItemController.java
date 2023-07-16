@@ -36,7 +36,7 @@ public class ItemController {
     public ItemDto getItem(@PathVariable Long itemId,
                            @RequestHeader(value = "X-Sharer-User-Id", required = false) Long userId) {
         log.info("GET /items/{} | userId={}", itemId, userId == null ? "Not Authorized" : userId);
-        return itemService.getItemById(itemId);
+        return itemService.getItemById(itemId, userId);
     }
 
     @GetMapping

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import ru.practicum.shereit.user.model.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long>, UserRepositoryCustom {
 
     boolean existsUserByEmail(String email);
 

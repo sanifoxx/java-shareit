@@ -31,11 +31,6 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public UserCreateDto createNewUser(UserCreateDto userCreateDto) {
-        if (userRepository.existsUserByEmail(userCreateDto.getEmail())) {
-            throw new UserAlreadyExistsException(
-                    String.format("User with email '%s' already exists", userCreateDto.getEmail())
-            );
-        }
         User user = UserMapper.toUser(userCreateDto);
         return UserMapper.toCreateDto(userRepository.save(user));
     }
@@ -52,18 +47,14 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     @Override
     public UserDto getUserById(Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(
-                String.format("User with id '%d' not found", id)
-        ));
+        User user = userRepository.findByIdOrElseThrow(id);
         return UserMapper.toDto(user);
     }
 
     @Transactional
     @Override
     public UserUpdateDto updateUser(UserUpdateDto userUpdateDto) {
-        User oldUser = userRepository.findById(userUpdateDto.getId()).orElseThrow(() -> new UserNotFoundException(
-                String.format("User with id '%d' not found", userUpdateDto.getId())
-        ));
+        User oldUser = userRepository.findByIdOrElseThrow(userUpdateDto.getId());
         if (userRepository.existsUserByEmailAndIdNot(userUpdateDto.getEmail(), userUpdateDto.getId())) {
             throw new UserAlreadyExistsException(
                     String.format("User with email '%s' already exists", userUpdateDto.getEmail())
@@ -81,9 +72,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public UserDto deleteUserById(Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(
-                String.format("User with id '%d' not found", id)
-        ));
+        User user = userRepository.findByIdOrElseThrow(id);
         userRepository.deleteById(id);
         return UserMapper.toDto(user);
     }
